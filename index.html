@@ -1,25 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RESOWAVE (Pvt) Ltd.</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESOWAVE (Pvt) Ltd. | Coming Soon</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://private-user-images.githubusercontent.com/55307326/424094906-b009f8d1-1e48-492e-a456-e2bdb5890a6f.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDk1ODA4NDgsIm5iZiI6MTc0OTU4MDU0OCwicGF0aCI6Ii81NTMwNzMyNi80MjQwOTQ5MDYtYjAwOWY4ZDEtMWU0OC00OTJlLWE0NTYtZTJiZGI1ODkwYTZmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA2MTAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjEwVDE4MzU0OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWUyYWI1Mzk0Mzc0NjEwOWEzYjVhZjNhMTJjMDFjM2IzZDJiMWUyYWJiMjUzNzRhMGEyNTNkMjE1YzIyZGJlNzAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.CjCqk5dndCKd8I6fAzfKgEpOFltGfJdE8a_WvNmx72A">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevents scrollbars from the canvas */
+        }
+        
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place canvas behind all content */
+        }
+
+        /* Styling for the glass effect card */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.5); /* Semi-transparent dark background */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px); /* For Safari compatibility */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <h1 class="fade-in">🚀 Welcome to <strong>RESOWAVE (Pvt) Ltd.</strong></h1>
-    <p class="fade-in delay-1">Pioneering the future of technology, one innovation at a time.</p>
-    <p class="fade-in delay-2">We’re developing cutting-edge solutions that push boundaries. Stay connected—big things are on the horizon. 🌊✨</p>
-    <p class="fade-in delay-3">🔬 <strong>Innovation takes time.</strong> But trust us—it will be worth the wait!</p>
-    <p class="fade-in delay-4">Stay tuned. The next wave of technology is coming soon. ⏳💡</p>
-  </div>
+<body class="bg-gray-900 text-white">
 
-  <footer class="fade-in delay-5">
-    <hr>
-    <p>🌍 <strong>Follow our journey.</strong> Stay curious. Stay inspired. 🚀</p>
-  </footer>
+    <!-- The interactive background canvas -->
+    <canvas id="bg-canvas"></canvas>
 
-  <script src="script.js"></script>
+    <!-- Main container to center the content -->
+    <div class="relative min-h-screen flex items-center justify-center p-4">
+        
+        <!-- The Glass Card -->
+        <div class="glass-card w-full max-w-2xl rounded-2xl p-8 md:p-12 shadow-2xl text-center">
+            
+            <!-- Company Logo -->
+            <div class="mb-6">
+                <img src="https://private-user-images.githubusercontent.com/55307326/424094906-b009f8d1-1e48-492e-a456-e2bdb5890a6f.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDk1ODA4NDgsIm5iZiI6MTc0OTU4MDU0OCwicGF0aCI6Ii81NTMwNzMyNi80MjQwOTQ5MDYtYjAwOWY4ZDEtMWU0OC00OTJlLWE0NTYtZTJiZGI1ODkwYTZmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA2MTAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjEwVDE4MzU0OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWUyYWI1Mzk0Mzc0NjEwOWEzYjVhZjNhMTJjMDFjM2IzZDJiMWUyYWJiMjUzNzRhMGEyNTNkMjE1YzIyZGJlNzAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.CjCqk5dndCKd8I6fAzfKgEpOFltGfJdE8a_WvNmx72A" alt="Resowave Logo" class="h-16 md:h-20 mx-auto">
+            </div>
+
+            <!-- Headline -->
+            <h2 class="text-2xl md:text-3xl font-medium text-white mt-4">
+                Engineering the Next Wave of Innovation
+            </h2>
+
+            <!-- Description -->
+            <p class="text-base md:text-lg text-gray-300 mt-4 leading-relaxed">
+                We are a deep-tech R&D company pioneering the future of product design through the power of electromagnetic waves. From concept to creation, we are building the technology that will define tomorrow.
+            </p>
+
+            <!-- Status/Coming Soon Message -->
+            <div class="mt-8 border-t border-gray-700 pt-6">
+                <p class="text-cyan-400 font-light tracking-widest text-sm animate-pulse">
+                    ⏳ LAUNCHING SOON 💡
+                </p>
+                <p class="text-gray-400 mt-2 text-sm">
+                    Our full digital presence is under construction as we focus on core research. Great things are on the horizon.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Background Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Basic Three.js Scene Setup ---
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            const renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById('bg-canvas'),
+                antialias: true,
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            // --- Wave Animation using Shaders ---
+
+            // We will animate a plane geometry to create the wave effect.
+            // The magic happens in the vertex shader.
+            const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
+
+            // Uniforms are variables we can pass from JavaScript to our shaders.
+            const uniforms = {
+                u_time: { type: 'f', value: 0.0 },
+                u_mouse: { type: 'v2', value: new THREE.Vector2(0,0) },
+                u_colorA: { type: 'v3', value: new THREE.Color('#08203e') }, // Dark blue
+                u_colorB: { type: 'v3', value: new THREE.Color('#00aaff') }  // Cyan
+            };
+
+            const material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: `
+                    uniform float u_time;
+                    varying float v_height;
+                    
+                    // 2D Noise function to create organic movement
+                    // Source: https://github.com/stegu/webgl-noise
+                    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                    vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                    vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+                    float snoise(vec2 v) {
+                        const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
+                                            0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
+                                           -0.577350269189626,  // -1.0 + 2.0 * C.x
+                                            0.024390243902439); // 1.0 / 41.0
+                        vec2 i  = floor(v + dot(v, C.yy) );
+                        vec2 x0 = v -   i + dot(i, C.xx);
+                        vec2 i1;
+                        i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+                        vec4 x12 = x0.xyxy + C.xxzz;
+                        x12.xy -= i1;
+                        i = mod289(i);
+                        vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
+                        vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+                        m = m*m;
+                        m = m*m;
+                        vec3 x = 2.0 * fract(p * C.www) - 1.0;
+                        vec3 h = abs(x) - 0.5;
+                        vec3 ox = floor(x + 0.5);
+                        vec3 a0 = x - ox;
+                        m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+                        vec3 g;
+                        g.x  = a0.x  * x0.x  + h.x  * x0.y;
+                        g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                        return 130.0 * dot(m, g);
+                    }
+
+                    void main() {
+                        vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+                        
+                        // Create two separate wave patterns and combine them
+                        float wave1 = snoise(vec2(modelPosition.x * 0.1 + u_time * 0.1, modelPosition.y * 0.1));
+                        float wave2 = snoise(vec2(modelPosition.x * 0.05, modelPosition.y * 0.05 + u_time * 0.05));
+                        
+                        // The z-position of each vertex is modified by the noise function
+                        modelPosition.z += (wave1 + wave2) * 0.3;
+                        v_height = modelPosition.z;
+
+                        vec4 viewPosition = viewMatrix * modelPosition;
+                        vec4 projectedPosition = projectionMatrix * viewPosition;
+                        gl_Position = projectedPosition;
+                    }
+                `,
+                fragmentShader: `
+                    uniform vec3 u_colorA;
+                    uniform vec3 u_colorB;
+                    varying float v_height;
+
+                    void main() {
+                        // Mix the two colors based on the vertex height to create a gradient
+                        vec3 color = mix(u_colorA, u_colorB, smoothstep(-0.5, 0.5, v_height));
+                        gl_FragColor = vec4(color, 1.0);
+                    }
+                `
+            });
+
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+            
+            // --- Animation Loop ---
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+                // Update the time uniform for continuous animation
+                uniforms.u_time.value = clock.getElapsedTime();
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+
+            // --- Handle Window Resizing ---
+            window.addEventListener('resize', () => {
+                // Update camera aspect ratio
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                // Update renderer size
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        });
+    </script>
 </body>
 </html>
